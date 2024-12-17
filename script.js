@@ -7,6 +7,7 @@ registerFont("NotoSansDevanagari-Bold.ttf", {
 }); // Replace with your font file path
 
 const generateDohaImage = async (
+  lang,
   angText,
   serialNumber,
   dohaText,
@@ -81,10 +82,8 @@ const generateDohaImage = async (
   }
   const hinTextLength = 50;
   const engTextLength = 45;
-  const meaningWithLineBreak = insertNewlineBasedOnLength(
-    meaningText,
-    hinTextLength
-  );
+  const textLen = lang === "hin" ? hinTextLength : engTextLength;
+  const meaningWithLineBreak = insertNewlineBasedOnLength(meaningText, textLen);
 
   const meaningLines = meaningWithLineBreak.split("\n");
   yOffset += 50; // Add spacing before meaning
@@ -99,61 +98,57 @@ const generateDohaImage = async (
   console.log(`Image saved at: ${outputPath}`);
 };
 
-// const dohas = [
-//   {
-//     lang: "eng",
-//     ang: "Surma ko ang",
-//     serial: 1,
-//     doha: "कड़ी कमान कबीर की धरी रहै मैदान ।\nसूरा हवे सो खींचही, नहि कायर का काम । । १ । ।",
-//     meaning:
-//       "Kabir Sahib's teachings are like a powerful bow that remains in the field, but only a brave warrior can pull and adopt it. It is not the work of cowards.",
-//   },
-//   {
-//     lang: "eng",
-//     ang: "Surma ko ang",
-//     serial: 2,
-//     doha: "कड़ी कमान कबीर की, न्यारे न्यारे तीर ।\nचुनि चुनि मारै बखतरी, मूरख गिनै न तीर । । २ । ।",
-//     meaning:
-//       "Kabir Sahib's powerful bow contains various arrows of uplifting teachings. He selects and shoots these arrows of wisdom at the ignorant, but foolish people fail to grasp their importance.",
-//   },
-//   {
-//     lang: "eng",
-//     ang: "Surma ko ang",
-//     serial: 3,
-//     doha: "कड़ी कमान कबीर की, काचा टिकै न कोय ।\nसिर सौंपे सीधा लड़े, सूरा कहिये सोय । । ३ । ।",
-//     meaning:
-//       "Kabir Sahib's teachings are so powerful that no weak person can withstand them. Only those who surrender their ego and fight with sincerity are considered true warriors.",
-//   },
-// ];
-
 const dohas = [
   {
-    serial: 4,
-    doha: "कड़ी कमान कबीर की धरी रहै मैदान ।\nसूरा हवे सो खींचही, नहि कायर का काम । । १ । ।",
+    lang: "eng",
+    serial: 36,
+    doha: "हरिजन गाँठि न बांधही, उदर समाना लेय |\nआगे पीछे हरि खड़े, जो मांगै सो देय | ३६ ||",
     meaning:
-      "कबीर साहब का उपदेशरूपी कमान शक्तिशाली है, जो मैदान में पड़ा रहने पर भी शूरवीर द्वारा ही खींचा-अपनाया जाता है। यह कायरों का काम नहीं है।",
+      "A true devotee does not hoard for tomorrow, taking only enough to satisfy hunger. God, the caretaker, stands by and provides as needed.",
+    ang: "Viswash ko ang",
   },
   {
-    serial: 5,
-    doha: "कड़ी कमान कबीर की, न्यारे न्यारे तीर ।\nचुनि चुनि मारै बखतरी, मूरख गिनै न तीर । । २ । ।",
+    lang: "eng",
+    serial: 37,
+    doha: "अंडा पालै काछुई, बिन थन राखै पोख |\nयौं करता सबको करै, पालै तीनों लोक | ३७ ||",
     meaning:
-      "कबीर साहब के शक्तिशाली कमान में अनेक तरह के आत्मोत्थानक तीररूपी सदुपदेश भरे पड़े हैं। अज्ञान के बक्खतर पहने संसारियों को वे चुन-चुनकर सदुपदेशरूपी तीर मारते हैं, पर मूर्ख मनुष्य उपदेश-तीर का महत्त्व नहीं समझता।",
+      "Just as the turtle nurtures her eggs with mere focus and no physical nourishment, God sustains all beings across the three worlds through His divine grace.",
+    ang: "Viswash ko ang",
   },
   {
-    serial: 6,
-    doha: "कड़ी कमान कबीर की, काचा टिकै न कोय ।\nसिर सौंपे सीधा लड़े, सूरा कहिये सोय । । ३ । ।",
+    lang: "eng",
+    serial: 38,
+    doha: "अब तूं काहे को डरै, सिर पर हरि का हाथ |\nहस्ती चढ़कर डोलिये, कूकर भुसे जु लाख | ३८ ||",
     meaning:
-      "कबीर साहब का उपदेशरूपी कमान बहुत अधिक शक्तिशाली है। कोई भी कच्चा इन्सान उसके आगे टिक नहीं सकता। जो अहंकार को त्यागकर निष्कपट निश्छल होकर लड़े, वही शूरवीर कहलाता है।",
+      "Why fear now? God’s hand is above you. Let the dogs of criticism bark; ride the elephant of devotion with confidence.",
+    ang: "Viswash ko ang",
+  },
+  {
+    lang: "eng",
+    serial: 39,
+    doha: "आगे पीछे हरि खड़ा, आप सम्हारे भार |\nजन को दुःखी क्यों करै, समरथ सिरजनहार | ३९ ||",
+    meaning:
+      "God stands by His devotees, taking their burdens upon Himself. Why would the all-powerful Creator ever allow His devotee to suffer?",
+    ang: "Viswash ko ang",
+  },
+  {
+    lang: "eng",
+    serial: 40,
+    doha: "ऐसा कौन अभागिया, जो विस्वास और |\nराम बिना पग धरन कूँ, कहो कहाँ है ठौर || ४० ||",
+    meaning:
+      "Who is so unfortunate as to trust anyone other than Ram? Without Ram, is there even a place to stand?",
+    ang: "Viswash ko ang",
   },
 ];
 
-dohas.forEach(({ ang, serial, doha, meaning }, i) => {
+dohas.forEach(({ lang, ang, serial, doha, meaning }, i) => {
   generateDohaImage(
+    lang,
     ang,
     serial,
     doha,
     meaning,
     "doha_template.png",
-    `output_image_${serial}.png`
+    `doha_${lang}_${ang}_${serial}.png`
   );
 });
